@@ -27,10 +27,10 @@ class CreateProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        $product = Product::create();
-        return new $product;
+        $product = Product::create($request->all());
+        return $product;
     }
 
     /**
@@ -41,7 +41,7 @@ class CreateProductController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $product = Product::findOrFail($request->id);
+        $product = Product::find($id);
         return $product;
     }
 
