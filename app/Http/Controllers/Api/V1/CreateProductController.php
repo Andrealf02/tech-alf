@@ -30,7 +30,7 @@ class CreateProductController extends Controller
     public function store()
     {
         $product = Product::create();
-        return ProductResource::collection($product);
+        return new $product;
     }
 
     /**
@@ -54,14 +54,8 @@ class CreateProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($request->id);
-
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-
-        $product->save();
-
+        $product = Product::find($request->id);
+        $product->update($request->all()); 
         return $product;
     }
 
