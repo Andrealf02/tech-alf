@@ -29,8 +29,8 @@ class CreateProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create($request->all());
-        return $product;
+        Product::create($request->all());
+        return ['status' => true];
     }
 
     /**
@@ -54,8 +54,8 @@ class CreateProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($request->id);
-        $product->update($request->all()); 
+        $product = Product::find($id);
+        $product->update($request->id); 
         return $product;
     }
 
@@ -68,6 +68,6 @@ class CreateProductController extends Controller
     public function destroy(Request $request, $id)
     {
         $product = Product::destroy($request->id);
-        return $product;
+        return ['status' => true];
     }
 }
