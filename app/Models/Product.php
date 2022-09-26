@@ -11,4 +11,11 @@ class Product extends Model
     
     protected $fillable = ['name', 'description', 'price'];
 
+    public function randomProduct(){
+            Product::factory()
+            ->count(50)
+            ->hasPosts(1)
+            ->create();
+    }
+
 }
