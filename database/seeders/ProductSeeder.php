@@ -17,9 +17,9 @@ class ProductSeeder extends Seeder
     public function run()
     {
             DB::table('products')->insert([
-                'name'=>'Naranja',
-                'description'=>'Naranjas y cosas de naranjas',
-                'price'=> 0.20
+                'name'=>'Platanos',
+                'description'=>'Platanos y cosas de platano no es',
+                'price'=> 0.10
             ]);
     }
 }

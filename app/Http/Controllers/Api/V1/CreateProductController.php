@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -28,12 +29,8 @@ class CreateProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-
-        $product->save();
+        Product::create($request->all());
+        return ['status' => true];
     }
 
     /**
@@ -44,7 +41,7 @@ class CreateProductController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $product = Product::findOrFail($request->id);
+        $product = Product::find($id);
         return $product;
     }
 
@@ -57,14 +54,8 @@ class CreateProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($request->id);
-
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-
-        $product->save();
-
+        $product = Product::find($id);
+        $product->update($request->id); 
         return $product;
     }
 
@@ -77,6 +68,6 @@ class CreateProductController extends Controller
     public function destroy(Request $request, $id)
     {
         $product = Product::destroy($request->id);
-        return $product;
+        return ['status' => true];
     }
 }
